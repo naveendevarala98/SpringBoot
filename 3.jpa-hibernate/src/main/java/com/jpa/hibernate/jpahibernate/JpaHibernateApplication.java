@@ -34,6 +34,8 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	//	repository.playWithEntityManager();
 	//	repository.playWithEntityManager2();
-		repository.playWithEntityManager3();
+	//	repository.playWithEntityManager3();
+
+		repository.playWithEntityManager_datetime();
 	}
 }

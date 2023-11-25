@@ -81,4 +81,12 @@ public class CourseRepository {
         //em.refresh -> fetches data from the db
 
     }
+
+    public void playWithEntityManager_datetime(){
+        Course course = new Course("web service");
+        em.persist(course);
+
+        Course course2 = findById(1001L);
+        course2.setName("web service update");
+    }
 }

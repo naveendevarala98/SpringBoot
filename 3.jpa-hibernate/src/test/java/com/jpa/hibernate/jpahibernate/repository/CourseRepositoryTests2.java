@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
-class CourseRepositoryJpqlTests {
+class CourseRepositoryTests2 {
 
 	@Autowired
 	EntityManager em;
@@ -41,6 +42,13 @@ class CourseRepositoryJpqlTests {
 		TypedQuery<Course> query = em.createQuery("Select c From Course c where name like '%100 steps'", Course.class);
 		List<Course> resutList = query.getResultList();
 		logger.info("Select c From Course c -> {}",resutList);
+	}
+
+	@Test
+	public void jpql_name_query_basic() {
+		Query query= em.createNamedQuery("query_get_all_courses");
+		List resutList = query.getResultList();
+		logger.info("named query Select c From Course c -> {}",resutList);
 	}
 
 
