@@ -27,6 +27,8 @@ public class Student {
      if fetch type changed to lazy, then only student details fetched from db and again whenever
      try access passport separate query will be exceuted to fetch passport details
     */
+
+    //this is ownning side which means, foreign key passport is created in student table
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
