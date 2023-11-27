@@ -1,0 +1,33 @@
+package com.jpa.hibernate.jpahibernate.repository;
+
+import com.jpa.hibernate.jpahibernate.entity.Course;
+import com.jpa.hibernate.jpahibernate.entity.Student;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+@SpringBootTest
+class StudentRepositoryTests {
+
+	@Autowired
+	StudentRepository repository;
+
+	private Logger logger= LoggerFactory.getLogger(this.getClass());
+
+	@Test
+	@Transactional
+	public void retrieve_basic() {
+		Student student = repository.findById(2001L);
+		logger.info("Student->{}",student);
+		logger.info("passport->{}",student.getPassport());
+
+	}
+
+}

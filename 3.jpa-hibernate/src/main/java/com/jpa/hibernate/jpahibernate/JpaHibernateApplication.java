@@ -1,7 +1,9 @@
 package com.jpa.hibernate.jpahibernate;
 
+import com.jpa.hibernate.jpahibernate.entity.Student;
 import com.jpa.hibernate.jpahibernate.repository.CourseRepository;
 import com.jpa.hibernate.jpahibernate.entity.Course;
+import com.jpa.hibernate.jpahibernate.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	@Autowired
 	CourseRepository repository;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -36,6 +41,13 @@ public class JpaHibernateApplication implements CommandLineRunner {
 	//	repository.playWithEntityManager2();
 	//	repository.playWithEntityManager3();
 
-		repository.playWithEntityManager_datetime();
+	//	repository.playWithEntityManager_datetime();
+
+		studentOperation();
+	}
+
+	private  void studentOperation(){
+		Student student = new Student("mike");
+		studentRepository.saveStudentWithPassowrd(student);
 	}
 }
