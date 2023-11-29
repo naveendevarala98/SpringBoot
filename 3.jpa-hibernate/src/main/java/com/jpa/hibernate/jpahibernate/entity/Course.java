@@ -40,6 +40,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviewList = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "course")
+    private List<Student> students = new ArrayList<>();
+
     //default constructor needs to be provided, if there is argument constructor, otherwise no need
     public Course(){
 
@@ -73,6 +76,13 @@ public class Course {
         this.reviewList.remove(review);
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     @Override
     public String toString() {

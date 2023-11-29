@@ -1,6 +1,7 @@
 package com.jpa.hibernate.jpahibernate.repository;
 
 
+import com.jpa.hibernate.jpahibernate.entity.Course;
 import com.jpa.hibernate.jpahibernate.entity.Passport;
 import com.jpa.hibernate.jpahibernate.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,17 @@ public class StudentRepository {
 
         student.setPassport(passport);
         em.persist(student);
+
+    }
+
+    //many to many
+    public void saveStudentandCourseJoin(){
+        Student student = new Student("jack");
+        Course course = new Course("microservice");
+        em.persist(course);
+        student.addCourse(course);
+        em.persist(student);
+
 
     }
 

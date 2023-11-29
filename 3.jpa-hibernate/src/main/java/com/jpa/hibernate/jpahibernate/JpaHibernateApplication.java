@@ -45,7 +45,8 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 		//studentOperation();
 
-		oneTOManyCourse();
+		//oneTOManyCourse();
+		manyToMany();
 	}
 
 	private  void studentOperation(){
@@ -55,5 +56,9 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	private void oneTOManyCourse(){
 		repository.saveReviewCourse();
+	}
+
+	private void manyToMany(){
+		studentRepository.saveStudentandCourseJoin();
 	}
 }

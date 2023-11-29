@@ -5,6 +5,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -31,6 +33,13 @@ public class Student {
     //this is ownning side which means, foreign key passport is created in student table
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
+
+    @ManyToMany
+    @JoinTable(name = "STUDENT_COURSE",
+    joinColumns = @JoinColumn(name="STUDENT_ID"), //owning side
+            inverseJoinColumns = @JoinColumn(name="COURSE_ID")
+    )
+    private List<Course> course = new ArrayList<>();
 
     //default constructor needs to be provided, if there is argument constructor, otherwise no need
     public Student(){
@@ -60,6 +69,14 @@ public class Student {
 
     public void setPassport(Passport passport) {
         this.passport = passport;
+    }
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void addCourse(Course course) {
+        this.course.add(course);
     }
 
     @Override

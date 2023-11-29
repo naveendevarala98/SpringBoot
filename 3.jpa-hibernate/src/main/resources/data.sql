@@ -28,3 +28,12 @@ insert into Review(id, rating, description, course_id, created_date, last_update
 values(4002, '4', 'Best Course',1001,CURRENT_DATE(), CURRENT_DATE());
 insert into Review(id, rating, description, course_id, created_date, last_updated_date)
 values(4003, '5','Awesome Course', 1002,CURRENT_DATE(), CURRENT_DATE());
+
+insert into STUDENT_COURSE(student_id, course_id)
+values(2001,1001);
+insert into STUDENT_COURSE(student_id, course_id)
+values(2002,1001);
+insert into STUDENT_COURSE(student_id, course_id)
+values(2003,1001);
+insert into STUDENT_COURSE(student_id, course_id)
+values(2004,1002);
