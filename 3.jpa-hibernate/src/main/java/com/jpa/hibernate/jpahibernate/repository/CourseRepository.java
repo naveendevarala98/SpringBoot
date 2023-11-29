@@ -2,6 +2,7 @@ package com.jpa.hibernate.jpahibernate.repository;
 
 
 import com.jpa.hibernate.jpahibernate.entity.Course;
+import com.jpa.hibernate.jpahibernate.entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,5 +89,29 @@ public class CourseRepository {
 
         Course course2 = findById(1001L);
         course2.setName("web service update");
+    }
+
+    public void saveReviewCourse(){
+        //1.fetch course
+
+        Course course = findById(1001L);
+
+
+        //2.set review
+        Review review=new Review("5","spr");
+        Review review2=new Review("4","beauty");
+
+        //mapping course to review
+        review.setCourse(course);
+        //mapping review to the course
+        course.addReview(review);
+        //mapping course to review
+        review2.setCourse(course);
+        //mapping review to the course
+        course.addReview(review2);
+
+        //3. save review
+        em.persist(review);
+        em.persist(review2);
     }
 }

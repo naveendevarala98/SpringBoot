@@ -5,6 +5,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name="CourseDetails") - to map with table in db or to create table in this name -> db course_details
@@ -33,6 +35,11 @@ public class Course {
     @CreationTimestamp //hibernate annotation
     private LocalDateTime CreatedDate;
 
+    //one course can have many reviews
+    //by default lazy
+    @OneToMany(mappedBy = "course")
+    private List<Review> reviewList = new ArrayList<>();
+
     //default constructor needs to be provided, if there is argument constructor, otherwise no need
     public Course(){
 
@@ -53,6 +60,19 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void addReview(Review review) {
+        this.reviewList.add(review);
+    }
+
+    public void removeReview(Review review){
+        this.reviewList.remove(review);
+    }
+
 
     @Override
     public String toString() {

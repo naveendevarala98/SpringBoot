@@ -3,10 +3,7 @@ package com.jpa.hibernate.jpahibernate.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,6 +23,11 @@ public class Review {
 
     @CreationTimestamp //hibernate annotation
     private LocalDateTime CreatedDate;
+
+    //one review associated with one course
+    //eager fetching by default
+    @ManyToOne
+    private Course course;
 
     //default constructor needs to be provided, if there is argument constructor, otherwise no need
     public Review(){
@@ -56,5 +58,13 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

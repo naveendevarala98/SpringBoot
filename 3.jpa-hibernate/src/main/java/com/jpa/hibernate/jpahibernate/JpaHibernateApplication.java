@@ -43,11 +43,17 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	//	repository.playWithEntityManager_datetime();
 
-		studentOperation();
+		//studentOperation();
+
+		oneTOManyCourse();
 	}
 
 	private  void studentOperation(){
 		Student student = new Student("mike");
 		studentRepository.saveStudentWithPassowrd(student);
+	}
+
+	private void oneTOManyCourse(){
+		repository.saveReviewCourse();
 	}
 }
