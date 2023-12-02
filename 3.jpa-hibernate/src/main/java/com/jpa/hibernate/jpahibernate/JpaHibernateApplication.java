@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 
 @SpringBootApplication
 public class JpaHibernateApplication implements CommandLineRunner {
@@ -46,7 +48,7 @@ public class JpaHibernateApplication implements CommandLineRunner {
 		//studentOperation();
 
 		//oneTOManyCourse();
-		manyToMany();
+		//manyToMany();
 	}
 
 	private  void studentOperation(){
