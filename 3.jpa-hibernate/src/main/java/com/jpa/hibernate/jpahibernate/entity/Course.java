@@ -13,12 +13,12 @@ import java.util.List;
 
 //@NamedQuery(name="query_get_all_courses",query = "Select c From Course c") // for only one
 //for multiple query use belwo
-@NamedQueries(
-        value = {
-                @NamedQuery(name="query_get_all_courses",query = "Select c From Course c"),
-                @NamedQuery(name="query_where_courses",query = "Select c From Course c where id =1001")
-        }
-)
+//@NamedQueries(
+//        value = {
+//                @NamedQuery(name="query_get_all_courses",query = "Select c From Course c"),
+//                @NamedQuery(name="query_where_courses",query = "Select c From Course c where id =1001")
+//        }
+//)
 
 public class Course {
 

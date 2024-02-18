@@ -1,6 +1,8 @@
 package com.jpa.hibernate.jpahibernate;
 
 import com.jpa.hibernate.jpahibernate.entity.Student;
+import com.jpa.hibernate.jpahibernate.libentity.Books;
+import com.jpa.hibernate.jpahibernate.repository.BooksRepository;
 import com.jpa.hibernate.jpahibernate.repository.CourseRepository;
 import com.jpa.hibernate.jpahibernate.entity.Course;
 import com.jpa.hibernate.jpahibernate.repository.StudentRepository;
@@ -22,6 +24,9 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	@Autowired
 	StudentRepository studentRepository;
+
+	@Autowired
+	BooksRepository booksRepository;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,6 +54,18 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 		//oneTOManyCourse();
 		//manyToMany();
+
+
+		//Lib entity
+		libentity();
+	}
+
+	private void libentity() throws InterruptedException {
+
+
+		booksRepository.insertBooks(1L,"books");
+		Thread.sleep(1000);
+		booksRepository.updateBooks(1L,"updatebooks");
 	}
 
 	private  void studentOperation(){

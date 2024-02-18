@@ -8,4 +8,6 @@ public interface CourseRepositorySpringDataJpa extends JpaRepository<Course,Long
 
     @Query("select c from Course c where c.name=:name")
     public Course findByName(String name);
+
+
 }
