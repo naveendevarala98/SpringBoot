@@ -20,11 +20,12 @@ public class BooksRepository {
     @Autowired
     EntityManager em;
 
-    public void insertBooks(Long id, String name){
-        Query query = em.createNativeQuery("insert into Books (ID,BOOKS_NAME,CREATED_DATE_TIME,UPDATED_DATE_TIME) " +
-                "values (:id,:name,CURRENT_DATE(),CURRENT_DATE())", Books.class);
+    public void insertBooks(Long id, String name, int authorId){
+        Query query = em.createNativeQuery("insert into Books (ID,BOOKS_NAME,CREATED_DATE_TIME,UPDATED_DATE_TIME,Author_id) " +
+                "values (:id,:name,CURRENT_DATE(),CURRENT_DATE(),:authorId)", Books.class);
         query.setParameter("name",name);
         query.setParameter("id",id);
+        query.setParameter("authorId",authorId);
        int n = query.executeUpdate();
        System.out.println("afect rows"+n);
 
@@ -37,5 +38,13 @@ public class BooksRepository {
         int n = query.executeUpdate();
         System.out.println("afect rows"+n);
 
+    }
+
+    public void fetchBooks(){
+        Query query = em.createNativeQuery("Select * from BOOKS", Books.class);
+        List<Books> l = query.getResultList();
+
+        System.out.println("bokk name "+l.get(0).getBookName());
+        System.out.println("bokk name "+l.get(0).getAuthor().getAuthorName());
     }
 }

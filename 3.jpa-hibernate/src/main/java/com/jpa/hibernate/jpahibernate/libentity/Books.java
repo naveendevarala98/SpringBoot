@@ -3,10 +3,7 @@ package com.jpa.hibernate.jpahibernate.libentity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,6 +21,10 @@ public class Books {
 
     @CreationTimestamp
     private LocalDateTime updatedDateTime;
+
+    //foreign key created in books
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Author author;
 
     public void setId(Long id) {
         this.id = id;
@@ -47,5 +48,13 @@ public class Books {
 
     public void setUpdatedDateTime(LocalDateTime updatedDateTime) {
         this.updatedDateTime = updatedDateTime;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
