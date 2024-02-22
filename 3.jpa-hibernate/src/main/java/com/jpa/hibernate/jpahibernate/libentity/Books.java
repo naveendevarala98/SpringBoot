@@ -1,10 +1,13 @@
 package com.jpa.hibernate.jpahibernate.libentity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Books {
@@ -25,6 +28,16 @@ public class Books {
     //foreign key created in books
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Author author;
+
+
+    @OneToMany(mappedBy = "books")
+    private List<BookReview> bookReview;
+
+    @ManyToMany
+    @JoinTable(name="BOOK_GENRE",
+    joinColumns = @JoinColumn(name="BOOKS_ID"),
+    inverseJoinColumns = @JoinColumn(name="GENRE_ID"))
+    private List<Genre> genre;
 
     public void setId(Long id) {
         this.id = id;
@@ -56,5 +69,22 @@ public class Books {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    @JsonManagedReference  // - to stop infinite recursion refere again not working
+    public List<BookReview> getBookReview() {
+        return bookReview;
+    }
+
+    public void setBookReview(List<BookReview> bookReview) {
+        this.bookReview = bookReview;
+    }
+
+    public List<Genre> getGenre() {
+        return genre;
+    }
+
+    public void setGenre(List<Genre> genre) {
+        this.genre = genre;
     }
 }

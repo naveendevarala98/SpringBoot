@@ -2,11 +2,8 @@ package com.jpa.hibernate.jpahibernate;
 
 import com.jpa.hibernate.jpahibernate.entity.Student;
 import com.jpa.hibernate.jpahibernate.libentity.Books;
-import com.jpa.hibernate.jpahibernate.repository.AuthorRepository;
-import com.jpa.hibernate.jpahibernate.repository.BooksRepository;
-import com.jpa.hibernate.jpahibernate.repository.CourseRepository;
+import com.jpa.hibernate.jpahibernate.repository.*;
 import com.jpa.hibernate.jpahibernate.entity.Course;
-import com.jpa.hibernate.jpahibernate.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,15 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	@Autowired
 	AuthorRepository authorRepository;
+
+	@Autowired
+	BookReviewRespository bookReviewRespository;
+
+	@Autowired
+	GenreRepository genreRepository;
+
+	@Autowired
+	BooksGenreRepository booksGenreRepository;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -65,6 +71,9 @@ public class JpaHibernateApplication implements CommandLineRunner {
 	}
 
 	private void libentity() throws InterruptedException {
+		genreRepository.insertGenre(1, "comedy");
+		genreRepository.insertGenre(2, "horror");
+
 		authorRepository.insertAuthor(200, "swan");
 
 
@@ -72,9 +81,18 @@ public class JpaHibernateApplication implements CommandLineRunner {
 		Thread.sleep(1000);
 		booksRepository.updateBooks(1L,"updatebooks");
 
-		booksRepository.fetchBooks();
+		booksGenreRepository.insert(1,1);
+		booksGenreRepository.insert(1,2);
 
 		authorRepository.fetchAuthor();
+
+		bookReviewRespository.insertReview(1,"good",1);
+		bookReviewRespository.insertReview(2,"best",1);
+
+		booksRepository.fetchBooks();
+		genreRepository.fetchGenre();
+
+		bookReviewRespository.fetchBooksReview();
 
 	}
 

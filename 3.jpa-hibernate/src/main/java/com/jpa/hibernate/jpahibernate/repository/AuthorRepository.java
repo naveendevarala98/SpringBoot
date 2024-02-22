@@ -22,7 +22,8 @@ public class AuthorRepository {
         Query query = em.createNativeQuery("Insert into Author(id, author_name) values (:id,:name)");
         query.setParameter("id",id);
         query.setParameter("name",name);
-        query.executeUpdate();
+       int n=  query.executeUpdate();
+       System.out.println("insert author "+n);
     }
 
     public void fetchAuthor(){
